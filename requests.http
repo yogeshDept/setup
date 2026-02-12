@@ -1,0 +1,36 @@
+@baseUrl = http://localhost:3000
+@adminId = 1
+@subAdminId = 2
+
+### Give balance to sub-admin
+POST {{baseUrl}}/wallet/give
+Content-Type: application/json
+
+{
+  "subAdminId": "{{subAdminId}}",
+  "amount": 100
+}
+
+### Take back balance from sub-admin
+POST {{baseUrl}}/wallet/take-back
+Content-Type: application/json
+
+{
+  "subAdminId": "{{subAdminId}}",
+  "amount": 40
+}
+
+### Add customer (sub-admin spends balance)
+POST {{baseUrl}}/customer
+Content-Type: application/json
+
+{
+  "subAdminId": "{{subAdminId}}",
+  "cost": 10
+}
+
+### Sub-admin analytics (date range)
+GET {{baseUrl}}/analytics/sub-admin/{{subAdminId}}?start=2026-02-01&end=2026-02-28
+
+### Admin analytics
+GET {{baseUrl}}/analytics/admin/{{adminId}}
